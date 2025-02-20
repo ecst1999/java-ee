@@ -60,7 +60,7 @@
 				<td>Nombre</td>
 				<td>Apellido</td>
 				<td>Puesto</td>
-				<td>Salario</td>
+				<td>Salario</td>				
 			</tr>
 			
 			<c:forEach var="empTmp" items="${losEmpleados}">
@@ -69,7 +69,26 @@
 					<td>${empTmp.nombre}</td>
 					<td>${empTmp.apellido}</td>
 					<td>${empTmp.puesto}</td>
-					<td>${empTmp.salario}</td>
+					<td>
+<%-- 						<c:if test="${empTmp.salario<40000}">${empTmp.salario + 5000}</c:if> --%>
+<%-- 						<c:if test="${empTmp.salario>=40000}">${empTmp.salario}</c:if> --%>
+						<c:choose>
+						
+							<c:when test="${empTmp.salario<40000}">
+								${empTmp.salario + 5000}
+							</c:when>
+							
+							<c:when test="${empTmp.salario>40000 && empTmp.salario<=50000}">
+								${empTmp.salario + 2000}
+							</c:when>
+							
+							<c:otherwise>
+								${empTmp.salario}
+							</c:otherwise>
+							
+						</c:choose>
+
+					</td>					
 				</tr>				
 			</c:forEach>
 		
